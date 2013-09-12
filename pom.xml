@@ -10,6 +10,7 @@
 
   <properties>
     <spring.version>3.2.4.RELEASE</spring.version>
+    <msgpack.version>0.6.8</msgpack.version>
   </properties>
 
   <dependencies>
@@ -30,6 +31,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.msgpack</groupId>
+      <artifactId>msgpack</artifactId>
+      <version>${msgpack.version}</version>
     </dependency>
   </dependencies>
 
