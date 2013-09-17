@@ -1,6 +1,10 @@
 package jp.enrapt.msgpackdemo.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.beanutils.BeanMap;
 
 import org.msgpack.MessagePack;
 import org.springframework.http.HttpHeaders;
@@ -23,16 +27,28 @@ public class APIController {
   @RequestMapping("/msgpackdemo")
   public ResponseEntity<byte[]> msgpackdemo() throws IOException {
     MessagePack msgpack = new MessagePack();
-    Customer customer = new Customer();
-    customer.name = "Sherlock Shellingford";
-    customer.age = 15;
+    msgpack.register(Customer.class);
+    Customer customer = new Customer("Sherlock Shellingford", 15);
+    Map<String, Object> map = beanToNamedMap(customer);
 
-    byte[] body = msgpack.write(customer);
+    byte[] packed = msgpack.write(map);
 
     HttpHeaders headers = new HttpHeaders();
     headers.set("Content-Type", "application/x-msgpack");
 
-    ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+    ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(packed, headers, HttpStatus.OK);
     return responseEntity;
+  }
+
+  private static Map<String, Object> beanToNamedMap(Object bean) {
+    BeanMap beanMap = new BeanMap(bean);
+    Map<String, Object> map = new HashMap<String, Object>();
+    for (Object obj : beanMap.entrySet()) {
+      Map.Entry<String, Object> entry = (Map.Entry<String, Object>)obj;
+      if (!entry.getKey().equals("class"))
+        map.put(entry.getKey(), entry.getValue());
+    }
+
+    return map;
   }
 }

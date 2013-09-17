@@ -2,6 +2,7 @@
   <head>
     <title>example</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/js/lib/msgpack.js"></script>
     <script src="/js/example.js"></script>
   </head>
   <body>
