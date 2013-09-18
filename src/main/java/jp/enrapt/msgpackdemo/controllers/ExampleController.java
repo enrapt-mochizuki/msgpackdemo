@@ -10,4 +10,9 @@ public class ExampleController {
   public String example() {
     return "example";
   }
+
+  @RequestMapping("/upload")
+  public String upload() {
+    return "upload";
+  }
 }

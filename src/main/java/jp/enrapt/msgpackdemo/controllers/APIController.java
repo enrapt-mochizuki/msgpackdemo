@@ -6,11 +6,14 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanMap;
 
+import org.apache.commons.codec.binary.Base64;
+
 import org.msgpack.MessagePack;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -50,5 +53,14 @@ public class APIController {
     }
 
     return map;
+  }
+
+  @RequestMapping("/msgpackuploaddemo")
+  public ResponseEntity<String> msgpackdemo(@RequestBody String body) throws IOException {
+    byte[] decoded = Base64.decodeBase64(body);
+    MessagePack msgpack = new MessagePack();
+    String unpacked = msgpack.read(decoded, String.class);
+    ResponseEntity<String> responseEntity = new ResponseEntity<String>("\"" + unpacked + "\" uploaded", HttpStatus.OK);
+    return responseEntity;
   }
 }
