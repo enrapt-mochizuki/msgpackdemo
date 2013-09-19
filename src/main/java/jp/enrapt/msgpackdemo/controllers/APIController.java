@@ -29,7 +29,7 @@ public class APIController {
   }
 
   @RequestMapping("/download")
-  public ResponseEntity<byte[]> msgpackdemo() throws IOException {
+  public ResponseEntity<String> msgpackdemo() throws IOException {
     MessagePack msgpack = new MessagePack();
     msgpack.register(Customer.class);
     Customer customer = new Customer("Sherlock Shellingford", 15);
@@ -37,10 +37,12 @@ public class APIController {
 
     byte[] packed = msgpack.write(map);
 
+    String encoded = Base64.encodeBase64String(packed);
+
     HttpHeaders headers = new HttpHeaders();
     headers.set("Content-Type", "application/x-msgpack");
 
-    ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(packed, headers, HttpStatus.OK);
+    ResponseEntity<String> responseEntity = new ResponseEntity<String>(encoded, headers, HttpStatus.OK);
     return responseEntity;
   }
 
