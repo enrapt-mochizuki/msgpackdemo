@@ -55,7 +55,7 @@ public class APIController {
     return map;
   }
 
-  @RequestMapping("/msgpackuploaddemo")
+  @RequestMapping("/api/upload")
   public ResponseEntity<String> msgpackdemo(@RequestBody String body) throws IOException {
     byte[] decoded = Base64.decodeBase64(body);
     MessagePack msgpack = new MessagePack();
