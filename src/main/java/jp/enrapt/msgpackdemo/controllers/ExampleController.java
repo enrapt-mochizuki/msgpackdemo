@@ -6,9 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ExampleController {
-  @RequestMapping("/example")
-  public String example() {
-    return "example";
+  @RequestMapping("/download")
+  public String download() {
+    return "download";
   }
 
   @RequestMapping("/upload")

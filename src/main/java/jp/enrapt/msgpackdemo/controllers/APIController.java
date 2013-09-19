@@ -27,7 +27,7 @@ public class APIController {
     return responseEntity;
   }
 
-  @RequestMapping("/msgpackdemo")
+  @RequestMapping("/api/download")
   public ResponseEntity<byte[]> msgpackdemo() throws IOException {
     MessagePack msgpack = new MessagePack();
     msgpack.register(Customer.class);
