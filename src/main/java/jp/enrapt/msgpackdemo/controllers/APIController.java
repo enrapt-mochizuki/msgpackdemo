@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import jp.enrapt.msgpackdemo.messages.Customer;
 
 @Controller
+@RequestMapping("/api")
 public class APIController {
   @RequestMapping("/hello")
   public ResponseEntity<String> hello(@RequestParam("name") String name) {
@@ -27,7 +28,7 @@ public class APIController {
     return responseEntity;
   }
 
-  @RequestMapping("/api/download")
+  @RequestMapping("/download")
   public ResponseEntity<byte[]> msgpackdemo() throws IOException {
     MessagePack msgpack = new MessagePack();
     msgpack.register(Customer.class);
@@ -55,7 +56,7 @@ public class APIController {
     return map;
   }
 
-  @RequestMapping("/api/upload")
+  @RequestMapping("/upload")
   public ResponseEntity<String> msgpackdemo(@RequestBody String body) throws IOException {
     byte[] decoded = Base64.decodeBase64(body);
     MessagePack msgpack = new MessagePack();
