@@ -2,7 +2,7 @@ $(document).ready(function(){
   $.ajaxSetup({
     "converters": {
       "* base64": function(encoded) {
-        var data = atob(encoded);
+        var data = $.base64.decode(encoded);
         return data;
       },
       "* msgpack": function(packed) {

@@ -2,7 +2,7 @@ $(document).ready(function() {
   $.ajaxPrefilter("msgpack-send", function(options) {
     var toString = true;
     var packed = msgpack.pack(options.data, toString);
-    var encoded = btoa(packed)
+    var encoded = $.base64.encode(packed);
     options.data = encoded;
   });
 
