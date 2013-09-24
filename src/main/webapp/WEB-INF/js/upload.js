@@ -14,8 +14,14 @@ $(document).ready(function() {
 
   $("#submit").click(function() {
     var data = $("#text").val();
-    $.post("/api/upload", data, function(text) {
+    var method = $("#method").val();
+    $.ajax({
+      "url": "/api/upload",
+      "method": method,
+      "data": data,
+      "dataType": "msgpack-send"
+    }).done(function(text) {
       $("#result").text(text);
-    }, "msgpack-send");
+    });
   });
 });

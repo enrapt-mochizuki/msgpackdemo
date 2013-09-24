@@ -9,6 +9,10 @@
   <body>
     <h2>upload</h2>
     <input type="text" id="text"></input>
+    <select name="method" id="method">
+      <option value="POST" selected>POST</option>
+      <option value="PUT">PUT</option>
+    </select>
     <button type="submit" id="submit">submit</button>
     <div id="result"></div>
   </body>
