@@ -15,4 +15,9 @@ public class ExampleController {
   public String upload() {
     return "upload";
   }
+
+  @RequestMapping("/both")
+  public String both() {
+    return "both";
+  }
 }

@@ -66,4 +66,19 @@ public class APIController {
     ResponseEntity<String> responseEntity = new ResponseEntity<String>("\"" + unpacked + "\" uploaded", HttpStatus.OK);
     return responseEntity;
   }
+
+  @RequestMapping("/both")
+  public ResponseEntity<String> both(@RequestBody String body) throws IOException {
+    byte[] decoded = Base64.decodeBase64(body);
+    MessagePack msgpack = new MessagePack();
+    String unpacked = msgpack.read(decoded, String.class);
+    String rawBody = "\"" + unpacked + "\" uploaded";
+
+    byte[] packed = msgpack.write(rawBody);
+
+    String encoded = Base64.encodeBase64String(packed);
+
+    ResponseEntity<String> responseEntity = new ResponseEntity<String>(encoded, HttpStatus.OK);
+    return responseEntity;
+  }
 }
