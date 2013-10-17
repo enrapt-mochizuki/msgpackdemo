@@ -11,6 +11,7 @@
   <properties>
     <spring.version>3.2.4.RELEASE</spring.version>
     <msgpack.version>0.6.8</msgpack.version>
+    <jackson.version>1.8.9</jackson.version>
   </properties>
 
   <dependencies>
@@ -56,6 +57,18 @@
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <version>1.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>${jackson.version}</version>
     </dependency>
   </dependencies>
 
