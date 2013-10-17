@@ -25,8 +25,14 @@ $(document).ready(function() {
 
   $("#submit").click(function() {
     var data = $("#text").val();
-    $.post("/api/both", data, function(text) {
-      $("#result").text(text);
-    }, "base64 msgpack msgpack-send");
+    $.ajax({
+      "type": "POST",
+      "url": "/api/both",
+      "data": data,
+      "success": function(text) {
+        $("#result").text(text);
+      },
+      "dataType": "base64 msgpack msgpack-send"
+    });
   });
 });
