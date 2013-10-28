@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>both</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/js/lib/jquery.base64.js"></script>
     <script src="/js/lib/msgpack.js"></script>
