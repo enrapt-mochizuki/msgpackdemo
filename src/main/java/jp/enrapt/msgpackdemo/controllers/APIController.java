@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -67,18 +68,8 @@ public class APIController {
     return responseEntity;
   }
 
-  @RequestMapping("/both")
-  public ResponseEntity<String> both(@RequestBody String body) throws IOException {
-    byte[] decoded = Base64.decodeBase64(body);
-    MessagePack msgpack = new MessagePack();
-    String unpacked = msgpack.read(decoded, String.class);
-    String rawBody = "\"" + unpacked + "\" uploaded";
-
-    byte[] packed = msgpack.write(rawBody);
-
-    String encoded = Base64.encodeBase64String(packed);
-
-    ResponseEntity<String> responseEntity = new ResponseEntity<String>(encoded, HttpStatus.OK);
-    return responseEntity;
+  @RequestMapping(value = "/both.*", produces = { "application/json", "application/x-msgpack" })
+  public @ResponseBody Customer both(@RequestBody Customer customer) throws IOException {
+    return customer;
   }
 }

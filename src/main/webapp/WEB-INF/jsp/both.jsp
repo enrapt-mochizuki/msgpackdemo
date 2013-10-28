@@ -8,7 +8,21 @@
   </head>
   <body>
     <h2>both</h2>
-    <input type="text" id="text"></input>
+    <label for="customer_name">Customer</label>
+    <select name="customer_name" id="customer_name">
+      <option value="Sherlock Shellingford" selected>Sherlock Shellingford</option>
+      <option value="Cordelia Glauca">Cordelia Glauca</option>
+    </select>
+    <label for="request_mime_type">Request MIME Type</label>
+    <select name="request_mime_type" id="request_mime_type">
+      <option value="json" selected>json</option>
+      <option value="msgpack">msgpack</option>
+    </select>
+    <label for="response_mime_type">Response MIME Type</label>
+        <select name="response_mime_type" id="response_mime_type">
+          <option value="json" selected>json</option>
+          <option value="msgpack">msgpack</option>
+        </select>
     <button type="submit" id="submit">submit</button>
     <div id="result"></div>
   </body>
