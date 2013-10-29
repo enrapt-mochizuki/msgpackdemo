@@ -73,6 +73,9 @@ public class MappingMsgpackHttpMessageConverter
 
   @Override
   protected boolean supports(Class<?> clazz) {
+    // This method is called by AbstractHttpMessageConverter#can(Read|Write).
+    // But this class override AbstractHttpMessageConverter#read(Read|Write),
+    // thus this method is never called.
     throw new UnsupportedOperationException();
   }
 
