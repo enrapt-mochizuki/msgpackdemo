@@ -34,8 +34,10 @@ public class MappingMsgpackHttpMessageConverter
 
   @Override
   protected Object readInternal(Class<?> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-    JavaType javaType = createJavaType(clazz, null);
-    return readImpl(javaType, inputMessage);
+    // This method is called by AbstractHttpMessageConverter#read.
+    // But this class override AbstractHttpMessageConverter#read,
+    // thus this method is never called.
+    throw new UnsupportedOperationException();
   }
 
   @Override
